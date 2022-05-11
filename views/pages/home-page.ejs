@@ -1,0 +1,303 @@
+<!-- Begin Page Content -->
+
+<div class="container-fluid">
+  <%- include('../partials/appointmentCount.ejs') %>
+
+  <!-- Page Heading -->
+  <!-- <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+  <p class="mb-4">
+    DataTables is a third party plugin that is used to generate the demo table
+    below. For more information about DataTables, please visit the
+    <a target="_blank" href="https://datatables.net"
+      >official DataTables documentation</a
+    >.
+  </p> -->
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h4 class="m-0 font-weight-bold text-primary" style="text-transform:capitalize;"><%= heading %></h4>
+    </div>
+    <div class="card-body">
+      <% if (allBookAppointment.length>0) {%>
+      <div class="table-responsive">
+        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <div class="dataTables_length" id="dataTable_length">
+                <label
+                  >Show
+                  <select
+                    name="dataTable_length"
+                    aria-controls="dataTable"
+                    class="custom-select custom-select-sm form-control form-control-sm"
+                  >
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select>
+                  entries</label
+                >
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div id="dataTable_filter" class="dataTables_filter">
+                <label
+                  >Search:<input
+                    type="search"
+                    class="form-control form-control-sm"
+                    placeholder=""
+                    aria-controls="dataTable"
+                /></label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              
+              <table
+                class="table table-bordered dataTable"
+                id="dataTable"
+                width="100%"
+                cellspacing="0"
+                role="grid"
+                aria-describedby="dataTable_info"
+                style="width: 100%"
+              >
+                <thead>
+                  <tr role="row">
+                    <th
+                      class="sorting"
+                      tabindex="0"
+                      aria-controls="dataTable"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Name: activate to sort column descending"
+                    >
+                      #
+                    </th>
+                    <!-- aria-sort="ascending" aria-sort="descending" .sorting_asc,sorting_desc -->
+                    <th
+                      class="sorting"
+                      tabindex="0"
+                      aria-controls="dataTable"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Position: activate to sort column ascending"
+                    >
+                      Name
+                    </th>
+                    <th
+                      class="sorting"
+                      tabindex="0"
+                      aria-controls="dataTable"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Office: activate to sort column ascending"
+                    >
+                      Email
+                    </th>
+                    <th
+                      class="sorting"
+                      tabindex="0"
+                      aria-controls="dataTable"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Age: activate to sort column ascending"
+                    >
+                      Contact
+                    </th>
+                    <th
+                      class="sorting"
+                      tabindex="0"
+                      aria-controls="dataTable"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Start date: activate to sort column ascending"
+                    >
+                      Pincode
+                    </th>
+                    <th
+                      class="sorting"
+                      tabindex="0"
+                      aria-controls="dataTable"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Salary: activate to sort column ascending"
+                    >
+                      Status
+                    </th>
+                    <th
+                      class="sorting"
+                      tabindex="0"
+                      aria-controls="dataTable"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Salary: activate to sort column ascending"
+                    >
+                      Meeting Date
+                    </th>
+                    <th
+                      class="sorting"
+                      tabindex="0"
+                      aria-controls="dataTable"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Salary: activate to sort column ascending"
+                    >
+                      Meeting Link
+                    </th>
+                    <th
+                      class="sorting"
+                      tabindex="0"
+                      aria-controls="dataTable"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Salary: activate to sort column ascending"
+                    >
+                      Approve
+                    </th>
+                    <th
+                      class="sorting"
+                      tabindex="0"
+                      aria-controls="dataTable"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Salary: activate to sort column ascending"
+                    >
+                      Reject
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for( let index = 0; index < allBookAppointment.length;
+                  index++ ) { %>
+                  <tr class="<%= index%2==0 ? "odd":"even" %>">
+                    <td class="sorting_1"><%= skip + index + 1 %></td>
+                    <td><%= allBookAppointment[index].name %></td>
+                    <td><%= allBookAppointment[index].email %></td>
+                    <td><%= allBookAppointment[index].number %></td>
+                    <td><%= allBookAppointment[index].pincode %></td>
+                    <td><%= allBookAppointment[index].appointmentStatus %></td>
+                    <td><%= allBookAppointment[index].meetingTime %></td>
+                    <td>
+                      <% if ( allBookAppointment[index].meetingTime != 'Not Updated' ) {%>
+                      <a href="<%= allBookAppointment[index].meetingLink %>"
+                        >Meeting Link</a>
+                      <% } else { %>
+                      <%= allBookAppointment[index].meetingLink %> 
+                      <% }%>
+                    </td>
+                    <td align="center">
+                      <% if ( userDetails.role != 'Admin' &&
+                        allBookAppointment[index].appointmentStatus == 'pending' ) { %>
+                        <a
+                          href="/dashboard/appointment/:<%= allBookAppointment[index]._id %>"
+                          ><img src="img/accept.png"
+                        /></a>
+                        <% } %>
+                        <% if ( allBookAppointment[index].appointmentStatus == 'confirm' ) { %>
+                          Approved
+                        <% } %>
+                    </td>
+                    <td align="center">
+                      <% if ( userDetails.role != 'Admin' &&
+                      allBookAppointment[index].appointmentStatus == 'pending' ) { %>
+                      <a
+                        class="dropdown-item declineRequest"
+                        href="/"
+                        data-toggle="modal"
+                        data-target="#declineRequest"
+                        style="padding: 0"
+                        data-appointment-id="<%= allBookAppointment[index]._id %>"
+                      >
+                        <img src="img/remove.png" />
+                      </a>
+                      <% } %>
+                      <% if ( allBookAppointment[index].appointmentStatus == 'declined' ) { %>
+                        Declined
+                      <% } %>
+                    </td>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+              
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-5">
+              <div
+                class="dataTables_info"
+                id="dataTable_info"
+                role="status"
+                aria-live="polite"
+              >
+                Showing <%= skip + 1 %> to <%= currentPage == totalPage ? allResult.length : limit*currentPage %> of <%= allResult.length %> entries
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-7">
+              <div
+                class="dataTables_paginate paging_simple_numbers"
+                id="dataTable_paginate"
+              >
+                <ul class="pagination">
+                  <li
+                    class="paginate_button page-item previous <% if (currentPage == 1) {%> disabled<% } %>"
+                    id="dataTable_previous"
+                  >
+                    <a
+                      href="#"
+                      aria-controls="dataTable"
+                      data-dt-idx="0"
+                      tabindex="0"
+                      class="page-link"
+                      >Previous</a
+                    >
+                  </li>
+                  <% for( let index = 0; index < totalPage;
+                  index++ ) { %>
+                  <li class="paginate_button page-item <% if (currentPage == (index+1)) {%>active<% } %>">
+                    <a
+                      href="#"
+                      aria-controls="dataTable"
+                      data-dt-idx="1"
+                      tabindex="0"
+                      class="page-link">
+                      <%= index+1 %>
+                      </a>
+                  </li>
+                  <% } %>
+                  <li
+                    class="paginate_button page-item next <% if (currentPage == totalPage) {%> disabled<% } %>"
+                    id="dataTable_next"
+                  >
+                    <a
+                      href="#"
+                      aria-controls="dataTable"
+                      data-dt-idx="7"
+                      tabindex="0"
+                      class="page-link"
+                      >Next</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% }else {%>
+              <h2>No Requests</h2>
+              <% } %>
+    </div>
+  </div>
+
+<!-- 
+<iframe src="https://calendar.google.com/calendar/embed?src=c_ftnu5evpa9ig86afkgrqr74ikk%40group.calendar.google.com&ctz=Asia%2FKolkata" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+hello
+-->
+
+</div>
+<!-- /.container-fluid -->

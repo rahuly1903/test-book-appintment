@@ -1,0 +1,53 @@
+<!-- Begin Page Content -->
+
+<div class="container-fluid">
+  <%- include('../partials/doctorCount.ejs') %>
+
+  <div class="row">
+    <div class="col-xl-12">
+      <% if (users.length>0) {%>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Contact</th>
+            <th scope="col">Pincode</th>
+            <th scope="col">Status</th>
+            <th scope="col">Calender ID</th>
+            <th align="center">Approve</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for( let index = 0; index < users.length; index++ ) { %>
+          <tr>
+            <th scope="row"><%= index+1 %></th>
+            <td><%= users[index].name %></td>
+            <td><%= users[index].email %></td>
+            <td><%= users[index].contact %></td>
+            <td><%= users[index].pincode %></td>
+            <td>
+              <% if ( users[index].isUserAuthorize ) { %> Authorize <% } else {
+              %> Unauthorize <% } %>
+            </td>
+            <td><%= users[index].calenderID %></td>
+            <td align="center">
+              <% if ( users.role != 'Doctor' && !users[index].isUserAuthorize )
+              { %>
+              <a href="/dashboard/doctors/:<%= users[index]._id %>"
+                ><img src="img/accept.png"
+              /></a>
+              <% } %>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <% }else {%>
+      <h2>No Requests</h2>
+      <% } %>
+    </div>
+  </div>
+</div>
+<!-- /.container-fluid -->

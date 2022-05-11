@@ -1,0 +1,84 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <div class="p-5">
+        <div class="text-center">
+          <h1 class="h4 text-gray-900 mb-4">Approve Appointment</h1>
+        </div>
+        <form class="user" id="aprrove-doctor-form">
+          <input
+            type="hidden"
+            name="doctor_id"
+            value="<%= doctorDetails._id %>"
+          />
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control form-control-user"
+              placeholder="Name"
+              value="<%= doctorDetails.name %>"
+              autocomplete="false"
+              name="name"
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="email"
+              class="form-control form-control-user"
+              placeholder="Email"
+              value="<%= doctorDetails.email %>"
+              autocomplete="false"
+              name="email"
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control form-control-user"
+              placeholder="Contact Number"
+              value="<%= doctorDetails.number %>"
+              autocomplete="false"
+              name="number"
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control form-control-user"
+              placeholder="Pincode"
+              value="<%= doctorDetails.pincode %>"
+              autocomplete="false"
+              name="pincode"
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <label for="datepicker">Enter doctor calender id</label>
+            <input
+              id="calender-id"
+              type="text"
+              class="form-control form-control-user"
+              placeholder="Doctor calender id"
+              size="30"
+              autocomplete="false"
+              name="calenderID"
+            />
+          </div>
+
+          <button
+            type="submit"
+            id="approve-doctor-button"
+            class="btn btn-primary btn-user btn-block"
+            data-doctor-id="<%= doctor_id %>"
+          >
+            Submit
+          </button>
+          <p class="message"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+<!-- Content Row -->
+<div class="row">
+  <!-- Pending Requests Card -->
+  <div class="col-xl-4 col-md-6 mb-4">
+    <div
+      class="card border-left-warning shadow h-100 py-2"
+      onclick="window.location.href='/dashboard/doctors/?status=unauthorize'"
+    >
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div
+              class="text-xs font-weight-bold text-warning text-uppercase mb-1"
+            >
+              unauthorize Doctors
+            </div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">
+              <%= doctorCount.unauthorize || 0 %>
+            </div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-comments fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Approved Requests Card -->
+  <div class="col-xl-4 col-md-6 mb-4">
+    <div
+      class="card border-left-primary shadow h-100 py-2"
+      onclick="window.location.href='/dashboard/doctors/?status=authorize'"
+    >
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div
+              class="text-xs font-weight-bold text-primary text-uppercase mb-1"
+            >
+              authorize Doctors
+            </div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">
+              <%= doctorCount.authorize || 0 %>
+            </div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Earnings (Monthly) Card Example -->
+  <div class="col-xl-4 col-md-6 mb-4">
+    <div
+      class="card border-left-success shadow h-100 py-2"
+      onclick="window.location.href='/dashboard/doctors/?status=all'"
+    >
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div
+              class="text-xs font-weight-bold text-success text-uppercase mb-1"
+            >
+              All Doctors
+            </div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">
+              <%= doctorCount.all || 0 %>
+            </div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800" style="text-transform: capitalize">
+    <%= heading %>
+  </h1>
+</div>

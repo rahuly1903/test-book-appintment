@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Gluton Admin - Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/sb-admin-custom.css" rel="stylesheet" type="text/css" />
+    <link
+      href="vendor/datatables/dataTables.bootstrap4.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet" />
+  </head>
+  <body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <%- include('../partials/sidebar.ejs') %>
+      <!-- End of Sidebar -->
+
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+          <!-- Topbar -->
+          <%- include('../partials/header.ejs') %>
+          <!-- End of Topbar -->
+          <%- body %>
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <%- include('../partials/footer.ejs') %>
+        <!-- End of Footer -->
+      </div>
+      <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div
+      class="modal fade"
+      id="logoutModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button
+              class="close"
+              type="button"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Select "Logout" below if you are ready to end your current session.
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-secondary"
+              type="button"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <a class="btn btn-primary" href="/logout">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decline Request Modal-->
+    <div
+      class="modal fade"
+      id="declineRequest"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Do you want to Decline Appointment?
+            </h5>
+            <button
+              class="close"
+              type="button"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Click on 'Decline Appointment' button if you want to Decline the
+            appointment.
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-secondary"
+              type="button"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button class="btn btn-primary" type="button">
+              Decline Appointment
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <!-- Timepicker -->
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css"
+    />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <script>
+      try {
+        $(function () {
+          $("#datepicker").datepicker({ minDate: "0", maxDate: "+1M +10D" });
+        });
+        $(".timepicker").timepicker({
+          timeFormat: "h:mm p",
+          interval: 30,
+          minTime: "10",
+          maxTime: "6:00pm",
+          defaultTime: "10",
+          startTime: "10:00",
+          dynamic: false,
+          dropdown: true,
+          scrollbar: true,
+        });
+      } catch (e) {
+        console.log(e);
+      }
+      // Decline Appointment functionlity
+      $(".dropdown-item.declineRequest").on("click", function (e) {
+        e.preventDefault();
+        $(".dropdown-item.declineRequest").removeClass("active-declined");
+        $(this).addClass("active-declined");
+      });
+
+      $("#declineRequest .btn-primary").on("click", function (e) {
+        e.preventDefault();
+        var rejectId = $(".declineRequest.active-declined").data(
+          "appointment-id"
+        );
+        console.log(rejectId);
+        $.ajax({
+          type: "DELETE",
+          url: "/dashboard/reject/:" + rejectId,
+          success: function (msg) {
+            console.log(msg);
+            if (msg.error) {
+              console.log(msg.error);
+            } else {
+              console.log(msg);
+              window.location.href = "/dashboard";
+            }
+          },
+          error: function (error) {
+            console.log(error);
+          },
+        });
+      });
+
+      // Approve Appointment functionlity
+      $("#google-meeting-button").on("click", function (e) {
+        const dateValue = $("#datepicker").val();
+        console.log(dateValue.length);
+        if (dateValue.length < 1) {
+          $("#aprrove-appointment-form .msg")
+            .addClass("label-warning")
+            .text("Please select the date");
+          return false;
+        }
+        e.preventDefault();
+        var formData = $("#aprrove-appointment-form").serialize();
+        var buttonUrl = $(this).data("appointment-id");
+        console.log(formData, buttonUrl);
+        $.ajax({
+          type: "PATCH",
+          url: "/dashboard/appointment/:" + buttonUrl,
+          data: formData,
+          success: function (msg) {
+            if (msg.error) {
+              $("#aprrove-appointment-form .msg")
+                .addClass("label-warning")
+                .text(
+                  "There is some issue with meeting creation. Please connected with Gluton team"
+                );
+            } else {
+              $("#aprrove-appointment-form .msg")
+                .addClass("label-primary")
+                .text(
+                  "Meeting link created successfully. You will receive a mail soon regarding meeting"
+                );
+              setTimeout(function () {
+                window.location.href = "/";
+              }, 1000);
+            }
+          },
+          error: function (error) {
+            console.log(error);
+          },
+        });
+      });
+
+      // Approve Doctor functionlity
+      $("#approve-doctor-button").on("click", function (e) {
+        const calenderId = $("#calender-id").val();
+        console.log(calenderId.length);
+        if (calenderId.length < 1) {
+          $("#aprrove-doctor-form .message")
+            .addClass("label-warning")
+            .text("Please Enter Calender Id");
+          return false;
+        }
+        e.preventDefault();
+        var formData = $("#aprrove-doctor-form").serialize();
+        var buttonUrl = $(this).data("doctor-id");
+        console.log(formData, buttonUrl);
+        $.ajax({
+          type: "PATCH",
+          url: "/dashboard/doctors/:" + buttonUrl,
+          data: formData,
+          success: function (msg) {
+            if (msg.error) {
+              $("#aprrove-doctor-form .message")
+                .addClass("label-warning")
+                .text(
+                  "There is some issue with meeting creation. Please connected with Gluton team"
+                );
+            } else {
+              $("#aprrove-doctor-form .message")
+                .addClass("label-primary")
+                .text("Doctor authorization done successfully.");
+              setTimeout(function () {
+                window.location.href = "/dashboard/doctors";
+              }, 1000);
+            }
+          },
+          error: function (error) {
+            console.log(error);
+          },
+        });
+      });
+    </script>
+  </body>
+</html>

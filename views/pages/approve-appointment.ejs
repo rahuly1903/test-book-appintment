@@ -1,0 +1,97 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <div class="p-5">
+        <div class="text-center">
+          <h1 class="h4 text-gray-900 mb-4">Approve Appointment</h1>
+        </div>
+        <form class="user" id="aprrove-appointment-form">
+          <input
+            type="hidden"
+            name="doctorName"
+            value="<%= doctorDetails.name %>"
+          />
+          <input
+            type="hidden"
+            name="doctorEmail"
+            value="<%= doctorDetails.email %>"
+          />
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control form-control-user"
+              placeholder="Name"
+              value="<%= appointmentDetails.name %>"
+              autocomplete="false"
+              name="name"
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="email"
+              class="form-control form-control-user"
+              placeholder="Email"
+              value="<%= appointmentDetails.email %>"
+              autocomplete="false"
+              name="email"
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control form-control-user"
+              placeholder="Contact Number"
+              value="<%= appointmentDetails.number %>"
+              autocomplete="false"
+              name="number"
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control form-control-user"
+              placeholder="Pincode"
+              value="<%= appointmentDetails.pincode %>"
+              autocomplete="false"
+              name="pincode"
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <label for="datepicker">Select Appointment date</label>
+            <input
+              type="text"
+              id="datepicker"
+              class="form-control form-control-user"
+              placeholder="Select Appointment date"
+              size="30"
+              autocomplete="false"
+              name="date"
+            />
+          </div>
+          <div class="form-group">
+            <label for="time">Select Appointment Slot</label>
+            <input
+              class="timepicker text-center form-control form-control-user"
+              id="time"
+              name="time"
+            />
+          </div>
+
+          <button
+            type="submit"
+            id="google-meeting-button"
+            class="btn btn-primary btn-user btn-block"
+            data-appointment-id="<%= appointment_id %>"
+          >
+            Submit
+          </button>
+          <p class="message"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
